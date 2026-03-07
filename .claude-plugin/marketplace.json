@@ -1,0 +1,38 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "nestor-plugins",
+  "description": "NodeNestor plugin collection for Claude Code — memory, context, and productivity tools",
+  "owner": {
+    "name": "NodeNestor"
+  },
+  "plugins": [
+    {
+      "name": "rolling-context",
+      "description": "Transparent proxy that compresses old messages in the background using Haiku while keeping recent messages fully verbatim. Zero config, zero latency, uses your existing auth.",
+      "version": "1.0.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/claude-rolling-context.git"
+      },
+      "category": "productivity",
+      "homepage": "https://github.com/NodeNestor/claude-rolling-context"
+    },
+    {
+      "name": "claude-knowledge-graph",
+      "description": "Long-term memory for Claude Code — knowledge graph with entities, relationships, semantic search, auto-extraction from sessions, and context injection via hooks.",
+      "version": "1.0.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/claude-knowledge-graph.git"
+      },
+      "category": "memory",
+      "homepage": "https://github.com/NodeNestor/claude-knowledge-graph"
+    }
+  ]
+}
