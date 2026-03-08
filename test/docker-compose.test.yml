@@ -1,0 +1,94 @@
+services:
+  # Layer 1: Rolling context proxy (API interceptor)
+  rolling-context:
+    build:
+      context: ../../claude-rolling-context
+      dockerfile: Dockerfile
+    ports:
+      - "5599:5599"
+    environment:
+      - ROLLING_CONTEXT_PORT=5599
+      - ROLLING_CONTEXT_UPSTREAM=http://host.docker.internal:9212
+      - ROLLING_CONTEXT_TRIGGER=2000
+      - ROLLING_CONTEXT_TARGET=1000
+      - ROLLING_CONTEXT_MODEL=claude-haiku-4-5-20251001
+    volumes:
+      - shared-claude:/root/.claude
+    networks:
+      - test-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import http.client; c=http.client.HTTPConnection('127.0.0.1',5599,timeout=2); c.request('GET','/health'); r=c.getresponse(); exit(0 if r.status==200 else 1)"]
+      interval: 2s
+      timeout: 5s
+      retries: 15
+
+  # Layer 2: MCP servers (autoresearch, workflows, worktrees)
+  mcp-autoresearch:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+      args:
+        PLUGIN_PATH: claude-autoresearch
+    volumes:
+      - test-workspace:/workspace
+      - shared-claude:/root/.claude
+    networks:
+      - test-net
+
+  mcp-workflows:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+      args:
+        PLUGIN_PATH: claude-workflows
+    volumes:
+      - test-workspace:/workspace
+      - shared-claude:/root/.claude
+    networks:
+      - test-net
+
+  mcp-worktrees:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+      args:
+        PLUGIN_PATH: claude-worktrees
+    volumes:
+      - test-workspace:/workspace
+      - shared-claude:/root/.claude
+    networks:
+      - test-net
+
+  # Layer 3: Integration test runner
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      - PROXY_URL=http://rolling-context:5599
+      - API_KEY=${API_KEY:-test-key}
+      - TEST_WORKSPACE=/workspace
+    volumes:
+      - test-workspace:/workspace
+      - shared-claude:/root/.claude
+      # Mount all plugin sources for hook testing
+      - ../../claude-rolling-context:/plugins/rolling-context:ro
+      - ../../claude-autofix:/plugins/autofix:ro
+      - ../../claude-guardian:/plugins/guardian:ro
+      - ../../claude-workflows:/plugins/workflows:ro
+      - ../../claude-worktrees:/plugins/worktrees:ro
+      - ../../claude-autoresearch:/plugins/autoresearch:ro
+      - ../../claude-knowledge-graph:/plugins/knowledge-graph:ro
+    depends_on:
+      rolling-context:
+        condition: service_healthy
+    networks:
+      - test-net
+
+volumes:
+  shared-claude:
+  test-workspace:
+
+networks:
+  test-net:
+    driver: bridge

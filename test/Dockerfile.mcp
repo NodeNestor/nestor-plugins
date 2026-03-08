@@ -1,0 +1,11 @@
+FROM python:3.12-slim
+
+ARG PLUGIN_PATH
+WORKDIR /plugin
+
+# Copy the plugin source
+COPY ../../${PLUGIN_PATH}/ ./
+
+# MCP servers read from stdin, write to stdout
+# This container just holds the code — tests call it via subprocess or HTTP
+CMD ["python", "server/main.py"]
