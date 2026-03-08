@@ -33,6 +33,20 @@
       },
       "category": "memory",
       "homepage": "https://github.com/NodeNestor/claude-knowledge-graph"
+    },
+    {
+      "name": "claude-autoresearch",
+      "description": "Autonomous iterative improvement for any project — auto-detects type, generates fitness functions, runs experiments in a keep/revert loop with git tracking. Inspired by karpathy/autoresearch.",
+      "version": "1.0.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/claude-autoresearch.git"
+      },
+      "category": "productivity",
+      "homepage": "https://github.com/NodeNestor/claude-autoresearch"
     }
   ]
 }
