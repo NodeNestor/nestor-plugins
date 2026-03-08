@@ -1,0 +1,23 @@
+services:
+  # Claude Code with all plugins — runs REAL prompts
+  live-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.live
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      # Route directly to user's proxy
+      - ANTHROPIC_BASE_URL=http://host.docker.internal:9212
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - live-workspace:/workspace
+      # Mount all plugins
+      - ../../claude-autofix:/home/testuser/.claude/plugins/autofix:ro
+      - ../../claude-guardian:/home/testuser/.claude/plugins/guardian:ro
+      - ../../claude-workflows:/home/testuser/.claude/plugins/workflows:ro
+      - ../../claude-worktrees:/home/testuser/.claude/plugins/worktrees:ro
+      - ../../claude-autoresearch:/home/testuser/.claude/plugins/autoresearch:ro
+
+volumes:
+  live-workspace:

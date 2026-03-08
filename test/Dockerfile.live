@@ -1,0 +1,30 @@
+FROM node:22-slim
+
+# Install system deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git python3 python3-venv bash curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Claude Code
+RUN npm install -g @anthropic-ai/claude-code
+
+# Setup git config
+RUN git config --global user.email "test@nodenestor.dev" \
+    && git config --global user.name "NodeNestor Test"
+
+# Create non-root user (Claude Code refuses bypassPermissions as root)
+RUN useradd -m -s /bin/bash testuser
+RUN mkdir -p /workspace/test-project /home/testuser/.claude/plugins /app \
+    && chown -R testuser:testuser /workspace /home/testuser /app
+
+# Copy test harness
+COPY --chown=testuser:testuser live_test.py /app/live_test.py
+COPY --chown=testuser:testuser setup_project.sh /app/setup_project.sh
+RUN chmod +x /app/setup_project.sh
+
+USER testuser
+ENV HOME=/home/testuser
+
+WORKDIR /workspace/test-project
+
+ENTRYPOINT ["python3", "/app/live_test.py"]
