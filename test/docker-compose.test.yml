@@ -22,44 +22,7 @@ services:
       timeout: 5s
       retries: 15
 
-  # Layer 2: MCP servers (autoresearch, workflows, worktrees)
-  mcp-autoresearch:
-    build:
-      context: .
-      dockerfile: Dockerfile.mcp
-      args:
-        PLUGIN_PATH: claude-autoresearch
-    volumes:
-      - test-workspace:/workspace
-      - shared-claude:/root/.claude
-    networks:
-      - test-net
-
-  mcp-workflows:
-    build:
-      context: .
-      dockerfile: Dockerfile.mcp
-      args:
-        PLUGIN_PATH: claude-workflows
-    volumes:
-      - test-workspace:/workspace
-      - shared-claude:/root/.claude
-    networks:
-      - test-net
-
-  mcp-worktrees:
-    build:
-      context: .
-      dockerfile: Dockerfile.mcp
-      args:
-        PLUGIN_PATH: claude-worktrees
-    volumes:
-      - test-workspace:/workspace
-      - shared-claude:/root/.claude
-    networks:
-      - test-net
-
-  # Layer 3: Integration test runner
+  # Layer 2: Integration test runner
   test-runner:
     build:
       context: .
@@ -71,7 +34,7 @@ services:
     volumes:
       - test-workspace:/workspace
       - shared-claude:/root/.claude
-      # Mount all plugin sources for hook testing
+      # Mount all plugin sources for hook + MCP testing
       - ../../claude-rolling-context:/plugins/rolling-context:ro
       - ../../claude-autofix:/plugins/autofix:ro
       - ../../claude-guardian:/plugins/guardian:ro
