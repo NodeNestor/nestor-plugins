@@ -47,6 +47,62 @@
       },
       "category": "productivity",
       "homepage": "https://github.com/NodeNestor/claude-autoresearch"
+    },
+    {
+      "name": "claude-autofix",
+      "description": "Auto-test and lint after every edit — catches errors immediately, feeds them back to Claude for self-correction. Like Aider's killer feature, as a plugin.",
+      "version": "1.0.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/claude-autofix.git"
+      },
+      "category": "code-quality",
+      "homepage": "https://github.com/NodeNestor/claude-autofix"
+    },
+    {
+      "name": "claude-guardian",
+      "description": "Self-learning convention enforcer — watches project patterns, auto-generates .claude/rules files, prevents architectural drift. Zero-config, learns over time.",
+      "version": "1.0.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/claude-guardian.git"
+      },
+      "category": "code-quality",
+      "homepage": "https://github.com/NodeNestor/claude-guardian"
+    },
+    {
+      "name": "claude-workflows",
+      "description": "Declarative YAML workflow engine — define workflows triggered by hooks or cron, with sequential steps, conditions, and agent actions. GitHub Actions for Claude Code.",
+      "version": "1.0.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/claude-workflows.git"
+      },
+      "category": "automation",
+      "homepage": "https://github.com/NodeNestor/claude-workflows"
+    },
+    {
+      "name": "claude-worktrees",
+      "description": "Parallel experiment orchestrator — try N approaches in isolated git worktrees, evaluate each, merge the winner. Multi-agent coordination made simple.",
+      "version": "1.0.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/claude-worktrees.git"
+      },
+      "category": "productivity",
+      "homepage": "https://github.com/NodeNestor/claude-worktrees"
     }
   ]
 }
