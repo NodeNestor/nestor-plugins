@@ -13,11 +13,11 @@ services:
     volumes:
       - live-workspace:/workspace
       # Mount all plugins
-      - ../../claude-autofix:/home/testuser/.claude/plugins/autofix:ro
-      - ../../claude-guardian:/home/testuser/.claude/plugins/guardian:ro
-      - ../../claude-workflows:/home/testuser/.claude/plugins/workflows:ro
-      - ../../claude-worktrees:/home/testuser/.claude/plugins/worktrees:ro
-      - ../../claude-autoresearch:/home/testuser/.claude/plugins/autoresearch:ro
+      - ../../claude-autofix:/home/testuser/.claude/plugins/autofix
+      - ../../claude-guardian:/home/testuser/.claude/plugins/guardian
+      - ../../claude-workflows:/home/testuser/.claude/plugins/workflows
+      - ../../claude-worktrees:/home/testuser/.claude/plugins/worktrees
+      - ../../claude-autoresearch:/home/testuser/.claude/plugins/autoresearch
 
 volumes:
   live-workspace:

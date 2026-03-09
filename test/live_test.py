@@ -27,7 +27,7 @@ def run_claude(prompt, cwd=WORKSPACE, timeout=120, permission_mode="bypassPermis
     if os.environ.get("ANTHROPIC_BASE_URL"):
         env["ANTHROPIC_BASE_URL"] = os.environ["ANTHROPIC_BASE_URL"]
 
-    cmd = ["claude", "-p", prompt, "--output-format", "text"]
+    cmd = ["claude", "-p", prompt, "--output-format", "text", "--dangerously-skip-permissions"]
 
     try:
         result = subprocess.run(
@@ -89,11 +89,18 @@ def setup():
     result = subprocess.run(["claude", "--version"], capture_output=True, text=True, timeout=10)
     print(f"Claude Code version: {result.stdout.strip()}", flush=True)
 
-    # List plugin dirs
+    # List plugin dirs and verify structure
     plugins_dir = os.path.expanduser("~/.claude/plugins")
     if os.path.exists(plugins_dir):
         plugins = os.listdir(plugins_dir)
         print(f"Mounted plugins: {plugins}", flush=True)
+        for p in plugins:
+            pdir = os.path.join(plugins_dir, p)
+            # Check critical files
+            has_plugin_json = os.path.exists(os.path.join(pdir, ".claude-plugin", "plugin.json"))
+            has_mcp_json = os.path.exists(os.path.join(pdir, ".mcp.json"))
+            has_run_server = os.path.exists(os.path.join(pdir, "run_server.sh"))
+            print(f"  {p}: plugin.json={has_plugin_json} .mcp.json={has_mcp_json} run_server.sh={has_run_server}", flush=True)
     else:
         print("No plugins directory found", flush=True)
 
@@ -110,11 +117,29 @@ def test_claude_basic():
     assert "4" in result["output"], f"Expected '4' in output"
 
 
-def test_autoresearch_detect():
-    """Autoresearch can detect the project type via MCP tool."""
+def test_plugin_discovery():
+    """Verify that all plugin MCP tools are visible to Claude."""
     result = run_claude(
-        "Use the detect_project tool to detect what type of project this is. "
-        "Report the project type detected.",
+        "List ALL MCP tools you have available. Just list the tool names, one per line.",
+        timeout=60,
+    )
+    log(f"Output: {result['output'][:500]}")
+    assert result["success"], f"Claude failed: {result['stderr']}"
+    out_lower = result["output"].lower()
+    # Check for at least some MCP tools from our plugins
+    found = []
+    for tool in ["scan_project", "list_workflows", "start_experiment"]:
+        if tool in out_lower:
+            found.append(tool)
+    log(f"Found MCP tools: {found}")
+    assert len(found) >= 1, f"No plugin MCP tools discovered! Check plugin mounting."
+
+
+def test_autoresearch_scan():
+    """Autoresearch can scan the project and Claude identifies the type."""
+    result = run_claude(
+        "Use the scan_project tool to scan this project. "
+        "Based on the results, tell me what type of project this is.",
         timeout=60,
     )
     log(f"Output: {result['output'][:300]}")
@@ -178,7 +203,7 @@ def test_multi_plugin():
     """Multiple plugins work together in a single session."""
     result = run_claude(
         "Do all of these:\n"
-        "1. Use detect_project to identify this project type\n"
+        "1. Use scan_project to scan this project and tell me what it is\n"
         "2. Use list_workflows to see available workflows\n"
         "3. Read src/components/UserCard.tsx\n"
         "4. Report what you found for each step.",
@@ -210,12 +235,13 @@ def main():
 
     tests = [
         ("1. Basic Claude Code response", test_claude_basic),
-        ("2. Autoresearch — detect project type", test_autoresearch_detect),
-        ("3. Worktrees — start + cleanup experiment", test_worktrees_experiment),
-        ("4. Workflows — list workflows", test_workflows_list),
-        ("5. Autofix — edit triggers checks", test_autofix_edit),
-        ("6. Guardian — observe naming conventions", test_guardian_observe),
-        ("7. Multi-plugin — all plugins in one session", test_multi_plugin),
+        ("2. Plugin MCP tool discovery", test_plugin_discovery),
+        ("3. Autoresearch — scan + identify project", test_autoresearch_scan),
+        ("4. Worktrees — start + cleanup experiment", test_worktrees_experiment),
+        ("5. Workflows — list workflows", test_workflows_list),
+        ("6. Autofix — edit triggers checks", test_autofix_edit),
+        ("7. Guardian — observe naming conventions", test_guardian_observe),
+        ("8. Multi-plugin — all plugins in one session", test_multi_plugin),
     ]
 
     for name, fn in tests:

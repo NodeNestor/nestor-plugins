@@ -3,7 +3,8 @@ FROM node:22-slim
 # Install system deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git python3 python3-venv bash curl ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -sf /usr/bin/python3 /usr/bin/python
 
 # Install Claude Code
 RUN npm install -g @anthropic-ai/claude-code
@@ -27,4 +28,8 @@ ENV HOME=/home/testuser
 
 WORKDIR /workspace/test-project
 
-ENTRYPOINT ["python3", "/app/live_test.py"]
+# Fix execute permissions on plugin scripts (Windows mounts lose +x)
+# and ensure line endings are correct
+COPY --chown=testuser:testuser fix_plugins.sh /app/fix_plugins.sh
+
+ENTRYPOINT ["bash", "/app/fix_plugins.sh"]

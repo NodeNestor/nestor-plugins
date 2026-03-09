@@ -93,6 +93,61 @@ steps:
     timeout: 30
 EOF
 
+# .mcp.json — register all plugin MCP servers at project level
+PLUGINS="$HOME/.claude/plugins"
+cat > .mcp.json << MCPJSON
+{
+  "mcpServers": {
+    "autoresearch": {
+      "command": "bash",
+      "args": ["$PLUGINS/autoresearch/run_server.sh"],
+      "cwd": "$PLUGINS/autoresearch"
+    },
+    "workflows": {
+      "command": "bash",
+      "args": ["$PLUGINS/workflows/run_server.sh"],
+      "cwd": "$PLUGINS/workflows"
+    },
+    "worktrees": {
+      "command": "bash",
+      "args": ["$PLUGINS/worktrees/run_server.sh"],
+      "cwd": "$PLUGINS/worktrees"
+    }
+  }
+}
+MCPJSON
+
+# hooks.json — register all plugin hooks at project level
+mkdir -p .claude
+cat > .claude/hooks.json << HOOKSJSON
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $PLUGINS/autofix/hooks/run_hook.sh post_edit.py"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $PLUGINS/autofix/hooks/run_hook.sh session_start.py"
+          }
+        ]
+      }
+    ]
+  }
+}
+HOOKSJSON
+
 # CLAUDE.md
 cat > CLAUDE.md << 'EOF'
 # Test Project
