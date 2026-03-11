@@ -117,6 +117,20 @@
       },
       "category": "orchestration",
       "homepage": "https://github.com/NodeNestor/claude-spawn"
+    },
+    {
+      "name": "ue5-ultimate-mcp",
+      "description": "Control Unreal Engine 5 from Claude Code — 158 tools for Blueprints, Materials, Sequencer, AI, Niagara, World Gen, UI, and more. Use /setup-ue5 to auto-install into your UE5 project.",
+      "version": "0.1.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/UE5UltimateMCP.git"
+      },
+      "category": "integration",
+      "homepage": "https://github.com/NodeNestor/UE5UltimateMCP"
     }
   ]
 }
