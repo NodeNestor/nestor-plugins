@@ -17,6 +17,7 @@ Plugin marketplace for Claude Code by [NodeNestor](https://github.com/NodeNestor
 | [claude-guardian](https://github.com/NodeNestor/claude-guardian) | Self-learning convention enforcer. Watches patterns, auto-generates rules. |
 | [claude-workflows](https://github.com/NodeNestor/claude-workflows) | Declarative YAML workflow engine. GitHub Actions for Claude Code. |
 | [claude-worktrees](https://github.com/NodeNestor/claude-worktrees) | Parallel experiment orchestrator with isolated git worktrees. |
+| [claude-spawn](https://github.com/NodeNestor/claude-spawn) | Spawn containerized Claude Code agents with plugins, optional desktop/GPU, and SSH/tmux. |
 
 Install any plugin:
 ```bash
