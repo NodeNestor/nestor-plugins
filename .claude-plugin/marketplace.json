@@ -131,6 +131,20 @@
       },
       "category": "integration",
       "homepage": "https://github.com/NodeNestor/UE5UltimateMCP"
+    },
+    {
+      "name": "stitch",
+      "description": "Google Stitch integration — design UIs from prompts, capture & analyze existing pages, pull refined designs back as framework-ready components. Bundles Stitch MCP + Playwright MCP.",
+      "version": "1.0.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/stitch-plugin.git"
+      },
+      "category": "design",
+      "homepage": "https://github.com/NodeNestor/stitch-plugin"
     }
   ]
 }
