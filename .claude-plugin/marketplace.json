@@ -148,8 +148,8 @@
     },
     {
       "name": "pii-proxy",
-      "description": "Round-trip PII redaction proxy. Names, emails, phones, addresses, URLs, dates, account numbers and secrets are replaced with deterministic tokens (e.g. name-a3f2b1) before they leave your machine, and restored in the response — Claude only ever sees opaque tokens, you only ever see real values. Local int8 ONNX inference (~12 ms / string batched).",
-      "version": "0.1.0",
+      "description": "Round-trip PII redaction proxy. Names, emails, phones, addresses, URLs, dates, account numbers and secrets are replaced with deterministic tokens (e.g. name-a3f2b1) before they leave your machine, and restored in the response — Claude only ever sees opaque tokens, you only ever see real values. Local int8 ONNX inference (~6 ms / string batched), persistent on-disk cache, /pii-stats /pii-gpu slash commands.",
+      "version": "0.2.0",
       "author": {
         "name": "NodeNestor"
       },
