@@ -18,6 +18,7 @@ Plugin marketplace for Claude Code by [NodeNestor](https://github.com/NodeNestor
 | [claude-workflows](https://github.com/NodeNestor/claude-workflows) | Declarative YAML workflow engine. GitHub Actions for Claude Code. |
 | [claude-worktrees](https://github.com/NodeNestor/claude-worktrees) | Parallel experiment orchestrator with isolated git worktrees. |
 | [claude-spawn](https://github.com/NodeNestor/claude-spawn) | Spawn containerized Claude Code agents with plugins, optional desktop/GPU, and SSH/tmux. |
+| [pii-proxy](https://github.com/NodeNestor/claude-pii-proxy) | Round-trip PII redaction. Names, emails, phones, secrets become deterministic tokens before they hit Anthropic, then restored in the response. ~12 ms / string. |
 
 Install any plugin:
 ```bash
