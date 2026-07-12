@@ -8,8 +8,8 @@
   "plugins": [
     {
       "name": "rolling-context",
-      "description": "Transparent proxy that compresses old messages in the background using Haiku while keeping recent messages fully verbatim. Zero config, zero latency, uses your existing auth.",
-      "version": "1.0.0",
+      "description": "Transparent proxy that compresses old messages in the background while keeping recent messages fully verbatim. Native compaction reuses the session's own request shape — prompt-cached, works on Pro/Max subscription auth. Zero config, zero latency; separate API key or local models optional.",
+      "version": "1.8.0",
       "author": {
         "name": "NodeNestor"
       },
