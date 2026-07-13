@@ -22,8 +22,8 @@
     },
     {
       "name": "nestor-lean",
-      "description": "Input-side token compression — duplicate file reads become references to what the model already saw, big code reads become structural maps while exploring (never while debugging), repetitive read/grep/command output collapses with explicit markers. Context-aware: clears knowledge on compaction, integrates with rolling-context, isolates simultaneous subagents. Pure-stdlib Python, fails open.",
-      "version": "0.2.0",
+      "description": "Input-side token compression — model-invokable codemap skill (whole-directory structural maps, 84% measured reduction), duplicate file reads become references to what the model already saw, big code reads become structural maps while exploring (never while debugging), repetitive read/grep/command output collapses with explicit markers. Context-aware: clears knowledge on compaction, integrates with rolling-context, isolates simultaneous subagents. Pure-stdlib Python, fails open.",
+      "version": "0.3.0",
       "author": {
         "name": "NodeNestor"
       },
