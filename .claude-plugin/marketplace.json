@@ -9,7 +9,7 @@
     {
       "name": "rolling-context",
       "description": "Transparent proxy that compresses old messages in the background while keeping recent messages fully verbatim. Native compaction reuses the session's own request shape — prompt-cached, works on Pro/Max subscription auth. Zero config, zero latency; separate API key or local models optional.",
-      "version": "1.8.3",
+      "version": "1.9.0",
       "author": {
         "name": "NodeNestor"
       },
@@ -19,6 +19,20 @@
       },
       "category": "productivity",
       "homepage": "https://github.com/NodeNestor/claude-rolling-context"
+    },
+    {
+      "name": "nestor-lean",
+      "description": "Input-side token compression — duplicate file reads become references to what the model already saw, big code reads become structural maps while exploring (never while debugging), repetitive read/grep/command output collapses with explicit markers. Context-aware: clears knowledge on compaction, integrates with rolling-context, isolates simultaneous subagents. Pure-stdlib Python, fails open.",
+      "version": "0.2.0",
+      "author": {
+        "name": "NodeNestor"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/NodeNestor/nestor-lean.git"
+      },
+      "category": "productivity",
+      "homepage": "https://github.com/NodeNestor/nestor-lean"
     },
     {
       "name": "claude-knowledge-graph",
