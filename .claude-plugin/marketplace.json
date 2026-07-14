@@ -22,8 +22,8 @@
     },
     {
       "name": "nestor-lean",
-      "description": "Input-side token compression — model-invokable codemap skill (whole-directory structural maps, 84% measured reduction), duplicate file reads become references to what the model already saw, big code reads become structural maps while exploring (never while debugging), repetitive read/grep/command output collapses with explicit markers. Context-aware: clears knowledge on compaction, integrates with rolling-context, isolates simultaneous subagents. Pure-stdlib Python, fails open.",
-      "version": "0.3.0",
+      "description": "Input-side token compression for Claude Code. Read dedup-by-reference, differential reads (a changed re-read returns only the diff), model-invokable codemap skill (whole-directory structural maps), and command-output compression using the real rtk binary (safe pipe mode, ~50 filters, checksum-verified opt-in download) plus built-in routes for dotnet/tests/installs. Context-aware (clears on compaction, integrates with rolling-context), multi-agent safe, tee-backed, fails open. Pure-stdlib Python.",
+      "version": "0.4.0",
       "author": {
         "name": "NodeNestor"
       },
