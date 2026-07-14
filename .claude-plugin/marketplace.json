@@ -22,8 +22,8 @@
     },
     {
       "name": "nestor-lean",
-      "description": "Input-side token compression for Claude Code. Read dedup-by-reference, differential reads (a changed re-read returns only the diff), model-invokable codemap skill (whole-directory structural maps), and command-output compression using the real rtk binary (safe pipe mode, ~50 filters, checksum-verified opt-in download) plus built-in routes for dotnet/tests/installs. Context-aware (clears on compaction, integrates with rolling-context), multi-agent safe, tee-backed, fails open. Pure-stdlib Python.",
-      "version": "0.4.0",
+      "description": "Input-side token compression for Claude Code. Read dedup-by-reference, differential reads (a changed re-read returns only the diff), model-invokable codemap skill (whole-directory structural maps), and command-output compression using the real rtk binary (safe pipe mode, ~50 filters, checksum-verified opt-in download) plus built-in routes for dotnet/tests/installs, and MCP tool-output compression (minify JSON, strip script/style, tee-backed). Context-aware (clears on compaction, integrates with rolling-context), multi-agent safe, tee-backed, fails open. Pure-stdlib Python.",
+      "version": "0.5.0",
       "author": {
         "name": "NodeNestor"
       },
