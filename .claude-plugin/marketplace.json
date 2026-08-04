@@ -9,7 +9,7 @@
     {
       "name": "rolling-context",
       "description": "Transparent proxy that compresses old messages in the background while keeping recent messages fully verbatim. Native compaction reuses the session's own request shape — prompt-cached, works on Pro/Max subscription auth. Turn it off per session with /rolling-context:off when you want a planning session to see everything — subagents follow the session that spawned them — or machine-wide with --global; nothing already compressed is discarded. Zero config, zero latency; separate API key or local models optional.",
-      "version": "1.11.0",
+      "version": "1.11.1",
       "author": {
         "name": "NodeNestor"
       },
