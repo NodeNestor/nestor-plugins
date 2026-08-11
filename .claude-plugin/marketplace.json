@@ -21,18 +21,18 @@
       "homepage": "https://github.com/NodeNestor/claude-rolling-context"
     },
     {
-      "name": "nestor-lean",
-      "description": "Input-side token compression for Claude Code. Read dedup-by-reference, differential reads (a changed re-read returns only the diff), model-invokable codemap skill (whole-directory structural maps), and command-output compression using the real rtk binary (safe pipe mode, ~50 filters, checksum-verified opt-in download) plus built-in routes for dotnet/tests/installs, and MCP tool-output compression (minify JSON, strip script/style, tee-backed). Context-aware (clears on compaction, integrates with rolling-context), multi-agent safe, tee-backed, fails open. Pure-stdlib Python.",
-      "version": "0.8.1",
+      "name": "lean-context",
+      "description": "Input-side context compression for Claude Code — the companion to rolling-context: that one compresses the conversation history, this one compresses what enters context from tools. Read dedup-by-reference (including images), differential reads, codemap skill, command-output filters for 27 toolchains, ANSI and progress-redraw stripping, and MCP output compression. Invalidation is driven by compaction events, not a timer. Tee-backed, fails open, pure-stdlib Python.",
+      "version": "0.9.0",
       "author": {
         "name": "NodeNestor"
       },
       "source": {
         "source": "url",
-        "url": "https://github.com/NodeNestor/nestor-lean.git"
+        "url": "https://github.com/NodeNestor/claude-lean-context.git"
       },
       "category": "productivity",
-      "homepage": "https://github.com/NodeNestor/nestor-lean"
+      "homepage": "https://github.com/NodeNestor/claude-lean-context"
     },
     {
       "name": "claude-knowledge-graph",
