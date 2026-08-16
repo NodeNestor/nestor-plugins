@@ -176,8 +176,8 @@
     },
     {
       "name": "model-router",
-      "description": "Add custom models to Claude Code's /model picker. A local proxy routes each configured model to whatever backend you name - local vLLM, llama.cpp, Ollama, LM Studio, OpenRouter, a second Anthropic key - translating Anthropic<->OpenAI in both directions including tools, images, reasoning and the SSE stream. Every other model passes through byte-for-byte with auth intact, so subscription OAuth and an existing proxy chain keep working. Prefix-cache friendly, pure-stdlib Python, zero dependencies.",
-      "version": "0.2.0",
+      "description": "Add custom models to Claude Code's /model picker. A local proxy routes each configured model to whatever backend you name - local vLLM, llama.cpp, Ollama, LM Studio, OpenRouter, a second Anthropic key - translating Anthropic<->OpenAI in both directions including tools, images, reasoning and the SSE stream. Every other model passes through byte-for-byte with auth intact, so subscription OAuth and an existing proxy chain keep working. Chains safely behind rolling-context and pii-proxy. Prefix-cache friendly, pure-stdlib Python, zero dependencies.",
+      "version": "0.3.0",
       "author": {
         "name": "NodeNestor"
       },
