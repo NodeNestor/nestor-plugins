@@ -22,8 +22,8 @@
     },
     {
       "name": "lean-context",
-      "description": "Input-side context compression for Claude Code — the companion to rolling-context: that one compresses the conversation history, this one compresses what enters context from tools. Read dedup-by-reference (including images), differential reads, codemap skill, command-output filters for 27 toolchains, ANSI and progress-redraw stripping, and MCP output compression. Invalidation is driven by compaction events, not a timer. Tee-backed, fails open, pure-stdlib Python.",
-      "version": "0.9.0",
+      "description": "Input-side context compression for Claude Code — the companion to rolling-context: that one compresses the conversation history, this one compresses what enters context from tools. Read dedup-by-reference (including images), differential reads, codemap skill, command-output filters for 27 toolchains, ANSI and progress-redraw stripping, and MCP output compression. Scope it per conversation with /lean-context:off, machine-wide with --global, or make it opt-in entirely with /lean-context:default off. Invalidation is driven by compaction events, not a timer. Tee-backed, fails open, pure-stdlib Python.",
+      "version": "0.10.0",
       "author": {
         "name": "NodeNestor"
       },
