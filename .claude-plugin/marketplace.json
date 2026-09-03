@@ -9,7 +9,7 @@
     {
       "name": "rolling-context",
       "description": "Transparent proxy that compresses old messages in the background while keeping recent messages fully verbatim. Native compaction reuses the session's own request shape — prompt-cached, works on Pro/Max subscription auth. Turn it off per session with /rolling-context:off when you want a planning session to see everything — subagents follow the session that spawned them — or machine-wide with --global; nothing already compressed is discarded. Zero config, zero latency; separate API key or local models optional.",
-      "version": "1.12.0",
+      "version": "1.13.1",
       "author": {
         "name": "NodeNestor"
       },
@@ -177,7 +177,7 @@
     {
       "name": "model-router",
       "description": "Add custom models to Claude Code's /model picker. A local proxy routes each configured model to whatever backend you name - local vLLM, llama.cpp, Ollama, LM Studio, OpenRouter, a second Anthropic key - translating Anthropic<->OpenAI in both directions including tools, images, reasoning and the SSE stream. Every other model passes through byte-for-byte with auth intact, so subscription OAuth and an existing proxy chain keep working. Chains safely behind rolling-context and pii-proxy. Prefix-cache friendly, pure-stdlib Python, zero dependencies.",
-      "version": "0.4.2",
+      "version": "0.4.3",
       "author": {
         "name": "NodeNestor"
       },
