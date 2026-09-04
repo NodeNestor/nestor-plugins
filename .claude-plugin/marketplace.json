@@ -9,7 +9,7 @@
     {
       "name": "rolling-context",
       "description": "Transparent proxy that compresses old messages in the background while keeping recent messages fully verbatim. Native compaction reuses the session's own request shape — prompt-cached, works on Pro/Max subscription auth. Turn it off per session with /rolling-context:off when you want a planning session to see everything — subagents follow the session that spawned them — or machine-wide with --global; nothing already compressed is discarded. Zero config, zero latency; separate API key or local models optional.",
-      "version": "1.13.2",
+      "version": "1.13.3",
       "author": {
         "name": "NodeNestor"
       },
@@ -163,7 +163,7 @@
     {
       "name": "pii-proxy",
       "description": "Round-trip PII redaction proxy. Names, emails, phones, addresses, URLs, dates, account numbers and secrets are replaced with deterministic tokens (e.g. name-a3f2b1) before they leave your machine, and restored in the response — Claude only ever sees opaque tokens, you only ever see real values. Local int8 ONNX inference (~6 ms / string batched), persistent on-disk cache, /pii-stats /pii-gpu slash commands.",
-      "version": "0.2.1",
+      "version": "0.3.1",
       "author": {
         "name": "NodeNestor"
       },
